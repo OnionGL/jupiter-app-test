@@ -114,6 +114,11 @@ export const ShopItemReducer = createSlice({
    reducers: {
       loadMore(state, action) {
          state.shopList.push(...moreItem)
+      },
+      deleteItem(state, action) {
+         state.shopList = state.shopList.filter(item => {
+            return item.id !== action.payload
+         })
       }
    },
 })

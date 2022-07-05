@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 export default function Main() {
    const { shopList } = useSelector(state => state.ShopItemReducer)
    const [shopArray, setShopArray] = useState(shopList)
-   const { loadMore } = ShopItemReducer.actions;
+   const { loadMore, deleteItem } = ShopItemReducer.actions;
    const dispatch = useDispatch()
    const changeBorder = (id) => {
       if (window.screen.width <= 1040) {
@@ -22,6 +22,11 @@ export default function Main() {
          }
          element.style.outline = '10px solid rgb(80, 226, 74)'
       }
+      document.addEventListener('keydown', (event) => {
+         if (event.code === 'Backspace') {
+            dispatch(deleteItem(id))
+         }
+      })
    }
    useEffect(() => {
       setShopArray(shopList)
